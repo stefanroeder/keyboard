@@ -15,9 +15,13 @@ typedef enum {
 } event_t;
 
 typedef struct {
-  char midi_note:8;
-  state_t       state:4; // Bit fields
-  unsigned int  t    :7; // Lines up nicely to 16bits, t overflows at 4096
+  char midi_note:7;
+  event_t       event:2; // Bit fields
+  state_t       state:2; // Bit fields
+  boolean   bounce_bottom:1;
+  boolean   bounce_top:1;
+  byte  t:7; // t overflows at 127
+  
 } key_t;
 
 typedef struct {
